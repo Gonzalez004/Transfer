@@ -5,6 +5,7 @@ The move function adds the x velocity to the x position, and the y velocity to t
 Create 1 - 2 FACE objects, initialize them, draw them, and move them in a simple game loop.*/
 
 #include <allegro5/allegro.h>
+#include <allegro5\allegro_image.h>
 #include <iostream>
 
 	using namespace std;
@@ -27,7 +28,7 @@ Create 1 - 2 FACE objects, initialize them, draw them, and move them in a simple
 		ALLEGRO_DISPLAY *Display = NULL;
 		ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 		ALLEGRO_TIMER *Timer = NULL;
-		ALLEGRO_BITMAP *Bouncer1 = NULL;
+		//ALLEGRO_BITMAP *Bouncer1 = NULL;
 		ALLEGRO_BITMAP *Bouncer2 = NULL;
 
 		bool redraw = true;
@@ -35,6 +36,9 @@ Create 1 - 2 FACE objects, initialize them, draw them, and move them in a simple
 		bool doexit = false;
 
 		al_init();
+		al_init_image_addon();
+
+		ALLEGRO_BITMAP *Bouncer1 = al_load_bitmap("Kirby.png");
 
 		al_install_keyboard();
 
@@ -44,13 +48,15 @@ Create 1 - 2 FACE objects, initialize them, draw them, and move them in a simple
 
 		al_set_target_bitmap(al_get_backbuffer(Display));
 		/////////////////////////////////////////////////
-		Face F1; F1.Initi(50, 50, 4, -4);
-		Face F2; F2.Initi(100, 100, 4, -4);
+		Face F1; 
+		//F1.Initi(50, 50, 4, -4);
+		Face F2; 
+		//F2.Initi(100, 100, 4, -4);
 		//////////////Insert Here////////////////////////
 		
-		Bouncer1 = al_create_bitmap(15, 15);
+		/*Bouncer1 = al_create_bitmap(15, 15);
 		al_set_target_bitmap(Bouncer1);
-		al_clear_to_color(al_map_rgb(500, 0, 0));
+		al_clear_to_color(al_map_rgb(500, 0, 0));*/
 	
 		Bouncer2 = al_create_bitmap(15, 15);
 		al_set_target_bitmap(Bouncer2);
@@ -100,7 +106,9 @@ Create 1 - 2 FACE objects, initialize them, draw them, and move them in a simple
 				redraw = false;
 
 				al_clear_to_color(al_map_rgb(0, 0, 0));
+				F1.Initi(50, 50, 4, -4);
 				F1.Draw(Bouncer1);
+				F2.Initi(100, 100, 4, -4);
 				F2.Draw(Bouncer2);
 				al_flip_display();
 			}
