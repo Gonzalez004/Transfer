@@ -21,7 +21,6 @@ ALLEGRO_FONT *font = al_load_ttf_font("Gameplay.ttf", 40, 0);
 int main() {
 	
 	srand(time(NULL));
-
 	al_init();
 	al_install_keyboard();
 	al_init_primitives_addon();
