@@ -71,6 +71,7 @@ int main() {
 			B = rand() % 250;
 			C = rand() % 250;
 			D = rand() % 250;
+			//////////////////////////////////////////////////////////////////////////////////////////////////////
 			if (bouncer_x > 0 && bouncer_x < 250 && bouncer_y >0 && bouncer_y < 250) {
 				al_draw_filled_rectangle(0, 0, 250, 250, al_map_rgb(B, C, D));
 			}
@@ -83,6 +84,7 @@ int main() {
 			if (bouncer_x > 250 && bouncer_x < 500 && bouncer_y > 250 && bouncer_y < 500) {
 				al_draw_filled_rectangle(250, 250, 500, 500, al_map_rgb(B, C, D));
 			}
+			//////////////////////////////////////////////////////////////////////////////////////////////////////
 		}
 		if (redraw && al_is_event_queue_empty(event_queue)) {
 			redraw = false;
