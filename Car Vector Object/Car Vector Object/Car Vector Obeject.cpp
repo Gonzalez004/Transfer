@@ -45,6 +45,10 @@ int main() {
 		system("pause");
 	}
 }
+
+
+
+
 void Car::InitCar(int FA, string C, string TD, string B) {
 	FuelAmount = FA;
 	Color = C;
