@@ -13,7 +13,7 @@ int YPos2 = 125;
 int XPos3 = 425;
 int YPos3 = 125;
 int SpeedX = -4.0;
-int SpeedY = 4.0;
+int SpeedY = 10.0;
 int SpeedX2 = -4.0;
 int SpeedY2 = 4.0;
 int SpeedX3 = -4.0;
@@ -27,13 +27,12 @@ int Angle;
 double Radius = 20;
 
 int main() {
-	
+
 	al_init();
 	al_init_primitives_addon();
 	al_init_image_addon();
-	al_install_audio();
 	al_init_acodec_addon();
-
+	al_install_audio();
 	ALLEGRO_DISPLAY *GameWindow = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *Timer = NULL;
@@ -43,7 +42,7 @@ int main() {
 	ALLEGRO_BITMAP *Left = NULL;
 	ALLEGRO_SAMPLE *Song = NULL;
 	ALLEGRO_SAMPLE_INSTANCE *SongInstance = NULL;
-	
+
 	al_reserve_samples(2);
 	Song = al_load_sample("Love.wav");
 	SongInstance = al_create_sample_instance(Song);
@@ -69,10 +68,10 @@ int main() {
 
 	GameWindow = al_create_display(Screen_W, Screen_H);
 
-	//Bouncer = al_create_bitmap(Bouncer_Size, Bouncer_Size);
-	//al_clear_to_color(al_map_rgb(255, 100, 100));
+	Bouncer = al_create_bitmap(Bouncer_Size, Bouncer_Size);
+	al_clear_to_color(al_map_rgb(255, 0, 0));
 
-	Bouncer = al_load_bitmap("kirby.png");
+	//Bouncer = al_load_bitmap("kirby.png");
 	Left = al_load_bitmap("Toy.png");
 	Jim = al_load_bitmap("Smile.jpg");
 	BackGround = al_load_bitmap("NoMore.jpg");
@@ -99,7 +98,7 @@ int main() {
 			printf("Audio clip sample not loaded!\n");
 			return 1;
 		}
-		if (Delay % 4 == 0) {
+		if (Delay % 2 == 0) {
 			Angle++;
 		}
 		Delay++;
@@ -108,23 +107,33 @@ int main() {
 		al_wait_for_event(event_queue, &ev);
 
 		if (ev.type == ALLEGRO_EVENT_TIMER) {
-				if (Bouncer_Y < 110 || Bouncer_Y > 150 && Delay % 4 == 0) {
+	/*		Bouncer_x = 20 + t;
+			Bouncer_y = 250;
+			Bouncer_x = 250 + 30 * (2 * cos(t) - cos(2 * t));
+			Bouncer_y = 250 + 30 * (2 * sin(t) - sin(2 * t));
+*/
+
+			//////////////////////////////////////////////////////////////////////
+			if (Bouncer_Y < 110 || Bouncer_Y > 150 && Delay % 4 == 0) {
 				Bouncer_dy = -Bouncer_dy;
 			}
 			Bouncer_Y += Bouncer_dy;
+			//////////////////////////////////////////////////////////////////////
+			/*Bouncer_dx2 = 100 + sin(Angle*2)*Radius;
+			Bouncer_dy2 = 130 + sin(Angle)*Radius;*/
+			Bouncer_dx2 = 250 + 30 * (2 * cos(Angle) - cos(2 * Angle));
+			Bouncer_dy2 = 250 + 30 * (2 * sin(Angle) - sin(2 * Angle));
 
-			Bouncer_dx2 = 100 + sin(Angle)*Radius;
-			Bouncer_dy2 = 130 + sin(Angle)*Radius;
 
 			Bouncer_X2 = Bouncer_dx2;
 			Bouncer_Y2 = Bouncer_dy2;
-
+			//////////////////////////////////////////////////////////////////////
 			Bouncer_dx3 = 250 + cos(Angle)*Radius;
 			Bouncer_dy3 = 130 + sin(Angle)*Radius;
 
 			Bouncer_X3 = Bouncer_dx3;
 			Bouncer_Y3 = Bouncer_dy3;
-
+			//////////////////////////////////////////////////////////////////////
 			Redraw = true;
 		}
 
@@ -156,4 +165,121 @@ int main() {
 	al_destroy_event_queue(event_queue);
 
 	return 0;
+
+
+	//	al_install_audio();
+	//#include <allegro5/allegro.h>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;
 }
