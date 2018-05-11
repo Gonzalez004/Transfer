@@ -5,6 +5,7 @@
 #include<allegro5/allegro_primitives.h>
 #include<allegro5/allegro_image.h>
 using namespace std;
+
 /////////////////////////////////////////////////////////////////////////
 bool Clear(int Map[10][10]);
 const int Size = 40;
