@@ -19,7 +19,8 @@ int SnapX = 0;
 int SnapY = 0;
 bool Player1 = false;
 bool Player2 = false;
-int PlayerTurn = 1;
+bool FoundMatch;
+bool Check(int Map[3][3]);
 /////////////////////////////////////////////////////////////////////////
 int main() {
 	/////////////////////////////////////////////////////////////////////////
@@ -84,6 +85,7 @@ int main() {
 		al_wait_for_event(Event_Queue, &ev);
 		/////////////////////////////////////////////////////////////////////////	
 		if (ev.type == ALLEGRO_EVENT_TIMER) {
+			//cout << FoundMatch << endl;
 			//cout << "Player1 = " << Player1 << endl;
 		//	cout << "Player2 = " << Player2 << endl;
 			//cout << "Clicked = " << clicked << endl;
@@ -122,6 +124,7 @@ int main() {
 			}*/
 				if (Map[BoxX / 200][BoxY / 200] == 0 && Player1 == true) {
 					Map[BoxX / 200][BoxY / 200] = 1;
+					Check(Map);
 					if (Player1 == true) {
 						Player2 = true;
 						Player1 = false;
@@ -133,6 +136,7 @@ int main() {
 				}
 				if (Map[BoxX / 200][BoxY / 200] == 0 && Player2 == true) {
 					Map[BoxX / 200][BoxY / 200] = 2;
+					//Check(Map);
 					if (Player1 == true) {
 						Player2 = true;
 						Player1 = false;
@@ -180,3 +184,21 @@ int main() {
 	return 0;
 }//Main Loop
  /////////////////////////////////////////////////////////////////////////
+bool Check(int Map[3][3]) {
+	int count = 1;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			if (Map[i][j] == Map[i][j + 1] && Map[i][j] == Map[i][j + 2]) {
+				FoundMatch = true;
+			}
+		}
+	}
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			if (Map[i + 1][j] == Map[i][j] && Map[i + 2][j] == Map[i][j]) {
+				FoundMatch = true;
+			}
+		}
+	}
+	return FoundMatch;
+}
